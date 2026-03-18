@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Bio Generator</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: #22c55e;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bio {
+  background: #1e293b;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.copy-btn {
+  background: #38bdf8;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🔥 Instagram Bio Generator</h1>
+
+  <input type="text" id="name" placeholder="Enter your name">
+
+  <select id="vibe">
+    <option value="cool">Cool</option>
+    <option value="funny">Funny</option>
+    <option value="aesthetic">Aesthetic</option>
+    <option value="sad">Sad</option>
+    <option value="savage">Savage</option>
+  </select>
+
+  <button onclick="generateBio()">Generate Bio</button>
+
+  <div id="output"></div>
+
+  <p style="margin-top:30px;">
+    If this helped you ❤️<br>
+    <a href="#" style="color:#38bdf8;">Support me</a>
+  </p>
+</div>
+
+<script>
+function generateBio() {
+  const name = document.getElementById("name").value || "Unknown";
+  const vibe = document.getElementById("vibe").value;
+  const output = document.getElementById("output");
+
+  let bios = [];
+
+  if (vibe === "cool") {
+    bios = [
+      `${name} 😎 | Living life my way`,
+      `Just vibes ✨ | ${name}`,
+      `${name} 🚀 | Dreams > Fear`,
+      `Chill mode ON 😌 | ${name}`,
+      `${name} 💯 | No limits`
+    ];
+  }
+
+  if (vibe === "funny") {
+    bios = [
+      `${name} 😂 | Professional overthinker`,
+      `I need a nap 😴 | ${name}`,
+      `${name} 🤡 | CEO of bad decisions`,
+      `Eating > Everything 🍕 | ${name}`,
+      `${name} 🐒 | Still loading...`
+    ];
+  }
+
+  if (vibe === "aesthetic") {
+    bios = [
+      `${name} 🌙 | lost in thoughts`,
+      `soft soul ✨ | ${name}`,
+      `${name} 🍃 | peace & silence`,
+      `dreaming quietly 🌸 | ${name}`,
+      `${name} ☁️ | floating`
+    ];
+  }
+
+  if (vibe === "sad") {
+    bios = [
+      `${name} 💔 | silent pain`,
+      `broken inside 🥀 | ${name}`,
+      `${name} 😞 | nothing feels right`,
+      `lost soul 🌧️ | ${name}`,
+      `${name} 🖤 | fading slowly`
+    ];
+  }
+
+  if (vibe === "savage") {
+    bios = [
+      `${name} 😈 | no mercy`,
+      `stay mad 🔥 | ${name}`,
+      `${name} 💣 | too real`,
+      `zero chill ⚡ | ${name}`,
+      `${name} 👑 | born to rule`
+    ];
+  }
+
+  output.innerHTML = "";
+
+  bios.forEach(bio => {
+    const div = document.createElement("div");
+    div.className = "bio";
+
+    div.innerHTML = `
+      <span>${bio}</span>
+      <button class="copy-btn" onclick="copyText('${bio}')">Copy</button>
+    `;
+
+    output.appendChild(div);
+  });
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+  alert("Copied!");
+}
+</script>
+
+</body>
+</html>
