@@ -8,7 +8,7 @@
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #0f172a;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   color: white;
   text-align: center;
   padding: 20px;
@@ -19,12 +19,21 @@ body {
   margin: auto;
 }
 
+h1 {
+  font-size: 28px;
+}
+
+p {
+  color: #cbd5f5;
+}
+
 input, select, button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
+  font-size: 16px;
 }
 
 button {
@@ -32,22 +41,40 @@ button {
   color: black;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.copy-all {
+  background: #38bdf8;
 }
 
 .bio {
   background: #1e293b;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .copy-btn {
-  background: #38bdf8;
+  background: #6366f1;
+  color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #94a3b8;
 }
 </style>
 </head>
@@ -55,26 +82,27 @@ button {
 <body>
 
 <div class="container">
-  <h1>🔥 Instagram Bio Generator</h1>
+  <h1>Create Stylish Instagram Bios in Seconds ✨</h1>
+  <p>Generate cool, funny, aesthetic bios instantly</p>
 
   <input type="text" id="name" placeholder="Enter your name">
 
   <select id="vibe">
-    <option value="cool">Cool</option>
-    <option value="funny">Funny</option>
-    <option value="aesthetic">Aesthetic</option>
-    <option value="sad">Sad</option>
-    <option value="savage">Savage</option>
+    <option value="cool">Cool 😎</option>
+    <option value="funny">Funny 😂</option>
+    <option value="aesthetic">Aesthetic 🌙</option>
+    <option value="sad">Sad 💔</option>
+    <option value="savage">Savage 😈</option>
   </select>
 
   <button onclick="generateBio()">Generate Bio</button>
+  <button class="copy-all" onclick="copyAll()">Copy All</button>
 
   <div id="output"></div>
 
-  <p style="margin-top:30px;">
-    If this helped you ❤️<br>
-    <a href="#" style="color:#38bdf8;">Support me</a>
-  </p>
+  <div class="footer">
+    Free tool • Made for creators 🚀
+  </div>
 </div>
 
 <script>
@@ -135,6 +163,13 @@ function generateBio() {
     ];
   }
 
+  // Extra AI-style randomness
+  bios = bios.map(bio => {
+    const extras = ["🔥", "✨", "💫", "⚡", "🌟"];
+    const random = extras[Math.floor(Math.random() * extras.length)];
+    return bio + " " + random;
+  });
+
   output.innerHTML = "";
 
   bios.forEach(bio => {
@@ -153,6 +188,14 @@ function generateBio() {
 function copyText(text) {
   navigator.clipboard.writeText(text);
   alert("Copied!");
+}
+
+function copyAll() {
+  const bios = document.querySelectorAll(".bio span");
+  let text = "";
+  bios.forEach(b => text += b.innerText + "\\n");
+  navigator.clipboard.writeText(text);
+  alert("All bios copied!");
 }
 </script>
 
